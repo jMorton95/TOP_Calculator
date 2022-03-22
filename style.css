@@ -1,36 +1,51 @@
 body {
     padding-top: 5%;
     margin: auto;
-    max-width: max-content;
+    width: 400px;
     display: grid;
-    grid-template-rows: 1fr 5fr 1fr;
-    gap: 5px;
-    width: 50%;
+    background-color: rgba(88, 219, 219, 0.493);
+    
 }
 
 .content{
-    background-color: bisque;
-    width: 100%;
+    background-color: black;
 }
 
 header{
-   min-width: max-content;
+   color: blue;
+   font-weight: bold;
+   height: 50px;
 }
 
 main{
-    /*display: flex;
-    flex-direction: column;*/
     display: grid;
-    gap: 5px;
 }
 
 footer{
-
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    justify-content: center;
+    height: 50px;
 }
 
 #display {
-    width: 400px;
+    margin: auto;
+    width: 380px;
     height: 100px;
+    border: black;
+}
+
+#currentInput{
+    background-color: rgba(255, 255, 255, 0.85);
+    height: 45px;
+    
+}
+
+#calculatedTotal{
+    background-color: white;
+    height: 45px;
+    
 }
 
 #buttons{
@@ -62,4 +77,8 @@ button{
 #enter{
     background-color: rgba(0, 128, 0, 0.616);
     
+}
+
+a{
+    color: black;
 }
