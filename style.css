@@ -1,0 +1,65 @@
+body {
+    padding-top: 5%;
+    margin: auto;
+    max-width: max-content;
+    display: grid;
+    grid-template-rows: 1fr 5fr 1fr;
+    gap: 5px;
+    width: 50%;
+}
+
+.content{
+    background-color: bisque;
+    width: 100%;
+}
+
+header{
+   min-width: max-content;
+}
+
+main{
+    /*display: flex;
+    flex-direction: column;*/
+    display: grid;
+    gap: 5px;
+}
+
+footer{
+
+}
+
+#display {
+    width: 400px;
+    height: 100px;
+}
+
+#buttons{
+    margin: 15px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3px;
+    height: 400px;
+    
+}
+
+button{
+    border: 0px;
+    font-size: 20px;
+}
+
+.number{
+    background-color: rgb(255, 255, 255, 0.85);
+}
+
+.operator{
+    background-color: rgba(57, 194, 235, 0.5);
+}
+
+.input{
+    background-color: rgba(255, 0, 0, 0.637)
+}
+
+#enter{
+    background-color: rgba(0, 128, 0, 0.616);
+    
+}
