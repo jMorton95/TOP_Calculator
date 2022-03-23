@@ -60,7 +60,6 @@ footer{
 button{
     border: 0px;
     font-size: 20px;
-    /*transition: all .007s ease;*/
 }
 
 .number{
@@ -86,5 +85,8 @@ a{
 
 .buttonHover{
     background: yellow;
+    transform: scale(1.05);
     opacity: 0.75;
+    color: green;
+    font-weight: bold;
 }
