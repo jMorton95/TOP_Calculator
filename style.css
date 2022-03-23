@@ -60,6 +60,7 @@ footer{
 button{
     border: 0px;
     font-size: 20px;
+    /*transition: all .007s ease;*/
 }
 
 .number{
@@ -74,11 +75,16 @@ button{
     background-color: rgba(255, 0, 0, 0.637)
 }
 
-#enter{
+.enter{
     background-color: rgba(0, 128, 0, 0.616);
     
 }
 
 a{
     color: black;
+}
+
+.buttonHover{
+    background: yellow;
+    opacity: 0.75;
 }
