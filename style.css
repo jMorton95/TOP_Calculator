@@ -5,7 +5,6 @@ body {
     display: grid;
     background-color: rgba(88, 219, 219, 0.500);
     font-family: 'Courier New', Courier, monospace;
-    
 }
 
 .content{
@@ -24,7 +23,6 @@ main{
 
 footer{
     display: flex;
-    /*grid-template-columns: repeat(3, 1fr);*/
     align-items: center;
     justify-content: space-evenly;
     height: 50px;
@@ -34,17 +32,16 @@ footer{
     margin: auto;
     width: 380px;
     height: 100px;
-    border: black;
     font-weight: bold;
     font-size: 20px;
     text-align: right;
+    vertical-align: middle;
+    line-height: 45px;
 }
 
 #currentInput, #calculatedTotal{
-    height: 45px;
     padding-right: 10px;
     margin-top: 3px;
-    /*padding-top: 2px;*/
 }
 
 #currentInput{
@@ -83,7 +80,7 @@ button{
 }
 
 .enter{
-    background-color: rgba(0, 128, 0, 0.616);
+    background-color: rgba(5, 163, 5, 0.7);
     
 }
 
@@ -94,7 +91,7 @@ button{
 a{
     text-decoration: none;
     color: rgb(255, 255, 255, 0.55);
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .buttonHover, .buttonClick{
@@ -105,8 +102,6 @@ a{
 .buttonHover{
     transform: scale(1.05);
     opacity: 0.75;
-    
-    
 }
 
 .buttonClick{
