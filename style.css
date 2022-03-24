@@ -84,7 +84,7 @@ button{
     
 }
 
-#zero, #decimal{
+.faded{
     opacity: 0.80;
 }
 

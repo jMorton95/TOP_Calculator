@@ -3,7 +3,6 @@
 function buttonHover(e){
     this.classList.toggle('buttonHover');
     this.classList.remove('buttonClick');
-
 }
 
 function buttonClick(e){
@@ -16,6 +15,18 @@ function clickTimeout(e){
     this.classList.remove('buttonClick');
 }
 
+function keyDown(e){
+    //Create an Array of all Keys we wish to allow KeyDown Events to apply to.
+    const activeKeys = 
+    ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '`', '+', '-', 'Enter', '*', '/', 'Backspace', 'Delete', '^', '.'];
+
+    //Check if the pressed Key is one we wish to add animation to.
+    if (activeKeys.includes(e.key)){
+        document.getElementById(e.key).classList.add('buttonClick');
+    }
+    
+}
+
 const inButtons = document.querySelectorAll('button');
 //Ensures Button Hightlighting works only when the mouse hovers over the target button.
 inButtons.forEach(button => button.addEventListener('mouseenter', buttonHover));
@@ -24,6 +35,4 @@ inButtons.forEach(button => button.addEventListener('mouseout', buttonHover));
 inButtons.forEach(button => button.addEventListener('click', buttonClick));
 inButtons.forEach(button => button.addEventListener('transitionend', clickTimeout));
 
-
-
-
+window.addEventListener('keydown', keyDown);
