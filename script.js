@@ -23,9 +23,16 @@ function keyDown(e){
     //Check if the pressed Key is one we wish to add animation to.
     if (activeKeys.includes(e.key)){
         document.getElementById(e.key).classList.add('buttonClick');
+        document.querySelector('#currentInput').textContent = e.key;
+        
     }
     
 }
+
+/*
+function enterNumber(keyArray){
+    keyArray
+}*/
 
 const inButtons = document.querySelectorAll('button');
 //Ensures Button Hightlighting works only when the mouse hovers over the target button.
