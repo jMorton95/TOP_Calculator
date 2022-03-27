@@ -16,6 +16,8 @@ function buttonClick(e){
         enterNumber(e.target.id);
         } else if (allowedOperators.includes(e.target.id)){
             enterOperator(e.target.id);
+        } else if (allowedInputs.includes(e.target.id)){
+            enterInput(e.target.id);
         }
         
     }
@@ -120,7 +122,6 @@ function backspace(){
             document.querySelector('#currentInput').textContent = "-";
         }
 
-        console.log(firstNumber + activeOperator + secondNumber);
     }
 }
 
