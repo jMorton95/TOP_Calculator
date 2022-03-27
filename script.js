@@ -18,8 +18,14 @@ function clickTimeout(e){
 }
 
 //Check if input is on the allowed list, if it is, record it and output it to HTML.
-function enterNumber(input, allowedNumbers){
+function enterNumber(input){
     if (allowedNumbers.includes(input) == true){
+       
+        //If the current input number is a decimal, do not allow additional decimals.
+        if (input == '.' && currentNumber.includes('.') == true){
+            return;
+        }
+
         currentNumber.push(input);
         document.querySelector('#currentInput').textContent = currentNumber.join("");
     }
@@ -31,16 +37,26 @@ function keyDown(e, check){
     
     if (activeKeys.includes(e.key)){
         document.getElementById(e.key).classList.add('buttonClick');
+        //checkDecimal(e.key, allowedNumbers)
         enterNumber(e.key, allowedNumbers);
     }
 }
-
+/*
+function checkDecimal(e){
+    if (e == '.'){
+        enterNumber(e, allowedNumbers);
+        document.getElementById(".").disabled = true;
+    }
+}
+*/
 //Create an Array of all Keys we wish to allow KeyDown Events to apply to.
 const activeKeys = 
 ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '`', '+', '-', 'Enter', '*', '/', 'Backspace', 'Delete', '^', '.'];
 
 //Create an Array of specific numbers that we allow to be passed as input values.
-const allowedNumbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+const allowedNumbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
+
+
 
 //Used to store Number inputs from cumulative inputs.
 let currentNumber = [];
