@@ -1,6 +1,7 @@
 
 //These functions and DOM Event Handlers control the Mouse Over effects of each Calculator Button.
 function buttonHover(e){
+    if (this.classList == 'button');
     this.classList.toggle('buttonHover');
     this.classList.remove('buttonClick');
 }
@@ -21,10 +22,11 @@ function clickTimeout(e){
 function enterNumber(input){
     if (allowedNumbers.includes(input) == true){
        
-        //If the current input number is a decimal, do not allow additional decimals.
-        if (input == '.' && currentNumber.includes('.') == true){
-            return;
-        }
+        //Don't allow our input to start with a decimal.
+        if (input == '.' && currentNumber.length == 0) return;
+        //If we already have a decimal point, do not allow additional decimals.
+        if (input == '.' && currentNumber.includes('.') == true) return;
+        
 
         currentNumber.push(input);
         document.querySelector('#currentInput').textContent = currentNumber.join("");
@@ -41,20 +43,13 @@ function keyDown(e, check){
         enterNumber(e.key, allowedNumbers);
     }
 }
-/*
-function checkDecimal(e){
-    if (e == '.'){
-        enterNumber(e, allowedNumbers);
-        document.getElementById(".").disabled = true;
-    }
-}
-*/
+
 //Create an Array of all Keys we wish to allow KeyDown Events to apply to.
 const activeKeys = 
 ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '`', '+', '-', 'Enter', '*', '/', 'Backspace', 'Delete', '^', '.'];
 
 //Create an Array of specific numbers that we allow to be passed as input values.
-const allowedNumbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
+const allowedNumbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.'];
 
 
 
