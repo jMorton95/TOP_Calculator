@@ -29,7 +29,7 @@ function clickTimeout(e){
 
 //Check if input is on the allowed list, if it is, record it and output it to HTML.
 function enterNumber(input){
-
+    //Decide whether or not we're entering a first or second number based on whether or not we have entered an operator.
     if (activeOperator == undefined){
 
         if (allowedNumbers.includes(input) == true){
@@ -55,7 +55,9 @@ function enterNumber(input){
    
 }
 
+//Handles the logic behind entering an operator.
 function enterOperator(input){
+
     if (allowedOperators.includes(input) == true){
         if (firstNumber.length == 0) return;
         activeOperator = input;
@@ -63,15 +65,76 @@ function enterOperator(input){
     }
 }
 
+//Decides which string manipulation function to use.
+function enterInput(input){
+
+        switch(input){
+            case 'Delete':
+                clear();
+                break;
+            case 'Backspace':
+                backspace();
+                break;
+            case '`':
+                plusMinus();
+                break;
+            case 'Enter':
+                enter();
+                break;
+            default:
+                return;
+        }
+    }
+
+//Clears all inputs. Resetting the calculator.
+function clear(){
+    document.querySelector('#currentInput').textContent = "-";
+    firstNumber = [];
+    secondNumber = [];
+    activeOperator = undefined;
+}
+function backspace(){
+
+    if (document.querySelector('#currentInput').textContent !== '-'){
+        //console.log(firstNumber + secondNumber + activeOperator);
+
+        if (activeOperator != undefined){
+
+            if (secondNumber.length > 0) secondNumber = secondNumber.shift(0, -1);
+            activeOperator = undefined;
+
+        } else {
+
+            if (firstNumber.length > 0) firstNumber = firstNumber.shift(0, -1);
+            document.querySelector('#currentInput') = "-";
+        }
+    
+    let stringTest = (firstNumber.join("") + " " + activeOperator + " " + secondNumber.join(""));
+    console.log(stringTest);
+    }
+}
+
+function plusMinus(){
+
+}
+function enter(){
+
+}
+
 //Check if the pressed Key is one we wish to add animation to. Then check if input is a number or operator and run the valid function.
 function keyDown(e){
+    console.log(e.key);
     if (allActiveKeys.includes(e.key)){
 
+        document.getElementById(e.key).classList.add('buttonClick') ;
+
         if(allowedNumbers.includes(e.key)){
-        document.getElementById(e.key).classList.add('buttonClick');
+
         enterNumber(e.key);
         } else if (allowedOperators.includes(e.key)){
             enterOperator(e.key);
+        } else if (allowedInputs.includes(e.key)){
+            enterInput(e.key);
         }
         
     }
