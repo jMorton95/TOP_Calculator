@@ -59,7 +59,7 @@ function enterNumber(input){
 function enterOperator(input){
 
     if (allowedOperators.includes(input) == true){
-        if (firstNumber.length == 0) return;
+        if (firstNumber.length == 0 || secondNumber.length > 0) return;
         activeOperator = input;
         if (activeOperator != undefined){ document.querySelector('#currentInput').textContent = (firstNumber.join("")) + " " + activeOperator; }
     }
@@ -96,21 +96,31 @@ function clear(){
 function backspace(){
 
     if (document.querySelector('#currentInput').textContent !== '-'){
-        //console.log(firstNumber + secondNumber + activeOperator);
 
+
+        if (activeOperator == undefined && secondNumber.length == 0){
+            firstNumber.pop();
+        } else if (activeOperator != undefined && secondNumber.length == 0){
+            activeOperator = undefined;
+        } else if (activeOperator != undefined && secondNumber.length > 0){
+            secondNumber.pop();
+        }
+
+        
         if (activeOperator != undefined){
 
-            if (secondNumber.length > 0) secondNumber = secondNumber.shift(0, -1);
-            activeOperator = undefined;
+        document.querySelector('#currentInput').textContent = (firstNumber.join("") + " " + activeOperator + " " + secondNumber.join(""));
 
-        } else {
+        } else if (activeOperator == undefined && firstNumber.length != 0){
 
-            if (firstNumber.length > 0) firstNumber = firstNumber.shift(0, -1);
-            document.querySelector('#currentInput') = "-";
+            document.querySelector('#currentInput').textContent = (firstNumber.join(""));
+
+        } else if (activeOperator == undefined && firstNumber.length == 0){
+
+            document.querySelector('#currentInput').textContent = "-";
         }
-    
-    let stringTest = (firstNumber.join("") + " " + activeOperator + " " + secondNumber.join(""));
-    console.log(stringTest);
+
+        console.log(firstNumber + activeOperator + secondNumber);
     }
 }
 
@@ -123,7 +133,7 @@ function enter(){
 
 //Check if the pressed Key is one we wish to add animation to. Then check if input is a number or operator and run the valid function.
 function keyDown(e){
-    console.log(e.key);
+    
     if (allActiveKeys.includes(e.key)){
 
         document.getElementById(e.key).classList.add('buttonClick') ;
