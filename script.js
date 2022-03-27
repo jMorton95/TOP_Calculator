@@ -95,11 +95,14 @@ function clear(){
     secondNumber = [];
     activeOperator = undefined;
 }
+
+//Deletes and prints the latest entered character.
 function backspace(){
 
-    if (document.querySelector('#currentInput').textContent !== '-'){
+    
+    if (document.querySelector('#currentInput').textContent !== '-'){ //Only work if we have something input.
 
-
+        //Check which number we are currently working on and delete most recent input.
         if (activeOperator == undefined && secondNumber.length == 0){
             firstNumber.pop();
         } else if (activeOperator != undefined && secondNumber.length == 0){
@@ -108,7 +111,7 @@ function backspace(){
             secondNumber.pop();
         }
 
-        
+        //Update HTML based on the current state of recorded inputs.
         if (activeOperator != undefined){
 
         document.querySelector('#currentInput').textContent = (firstNumber.join("") + " " + activeOperator + " " + secondNumber.join(""));
@@ -128,8 +131,28 @@ function backspace(){
 function plusMinus(){
 
 }
-function enter(){
 
+function enter(){
+    if (secondNumber.length > 0){
+        numbersToCalculate[0] = firstNumber.join("");
+        numbersToCalculate[1] = secondNumber.join("");
+        document.querySelector('#calculatedTotal').textContent = castOperator(numbersToCalculate[0], numbersToCalculate[1]);
+    }
+}
+
+function castOperator(one, two){
+    switch(activeOperator){
+        case '+':
+            return +one + +two;
+        case '-':
+            return one-two;
+        case '/':
+            return one/two;
+        case '*': 
+            return one*two;
+
+    }
+        
 }
 
 //Check if the pressed Key is one we wish to add animation to. Then check if input is a number or operator and run the valid function.
@@ -166,6 +189,7 @@ const allowedInputs = ['Enter', 'Backspace', 'Delete', '`'];
 //Used to store cumulative inputs from button press or keystrokes.
 let firstNumber = [];
 let secondNumber = [];
+let numbersToCalculate = [];
 let activeOperator;
 
 

@@ -37,6 +37,7 @@ footer{
     text-align: right;
     vertical-align: middle;
     line-height: 45px;
+    max-width: 380px;
 }
 
 #currentInput, #calculatedTotal{
