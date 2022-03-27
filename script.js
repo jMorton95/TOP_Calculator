@@ -8,9 +8,18 @@ function buttonHover(e){
 
 function buttonClick(e){
     this.classList.toggle('buttonClick');
-    enterNumber(e.target.id, allowedNumbers);
-}
 
+    if (allActiveKeys.includes(e.target.id)){
+
+        if(allowedNumbers.includes(e.target.id)){
+        document.getElementById(e.target.id).classList.add('buttonClick');
+        enterNumber(e.target.id);
+        } else if (allowedOperators.includes(e.target.id)){
+            enterOperator(e.target.id);
+        }
+        
+    }
+}
 
 //Remove CSS class after an animation finishes playing.
 function clickTimeout(e){
@@ -20,23 +29,51 @@ function clickTimeout(e){
 
 //Check if input is on the allowed list, if it is, record it and output it to HTML.
 function enterNumber(input){
+
+    if (activeOperator == undefined){
+
+        if (allowedNumbers.includes(input) == true){
+            //Don't allow our input to start with a decimal.
+            if (input == '.' && firstNumber.length == 0) return;
+            //If we already have a decimal point, do not allow additional decimals.
+            if (input == '.' && firstNumber.includes('.') == true) return;
+            
+            firstNumber.push(input);
+            document.querySelector('#currentInput').textContent = firstNumber.join("");
+            return;
+            }
+        }
+
     if (allowedNumbers.includes(input) == true){
-       
-        //Don't allow our input to start with a decimal.
-        if (input == '.' && currentNumber.length == 0) return;
-        //If we already have a decimal point, do not allow additional decimals.
-        if (input == '.' && currentNumber.includes('.') == true) return;
-        
-        currentNumber.push(input);
-        document.querySelector('#currentInput').textContent = currentNumber.join("");
+
+         if (input == '.' && secondNumber.length == 0) return;
+         if (input == '.' && secondNumber.includes('.') == true) return;
+            
+         secondNumber.push(input);
+         document.querySelector('#currentInput').textContent = firstNumber.join("") + " " + activeOperator + " " + secondNumber.join("");
+      }
+   
+}
+
+function enterOperator(input){
+    if (allowedOperators.includes(input) == true){
+        if (firstNumber.length == 0) return;
+        activeOperator = input;
+        if (activeOperator != undefined){ document.querySelector('#currentInput').textContent = (firstNumber.join("")) + " " + activeOperator; }
     }
 }
 
 //Check if the pressed Key is one we wish to add animation to. Then check if input is a number or operator and run the valid function.
 function keyDown(e){
     if (allActiveKeys.includes(e.key)){
+
+        if(allowedNumbers.includes(e.key)){
         document.getElementById(e.key).classList.add('buttonClick');
-        enterNumber(e.key, allowedNumbers);
+        enterNumber(e.key);
+        } else if (allowedOperators.includes(e.key)){
+            enterOperator(e.key);
+        }
+        
     }
 }
 
