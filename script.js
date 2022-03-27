@@ -139,6 +139,11 @@ function enter(){
         numbersToCalculate[0] = firstNumber.join("");
         numbersToCalculate[1] = secondNumber.join("");
         document.querySelector('#calculatedTotal').textContent = castOperator(numbersToCalculate[0], numbersToCalculate[1]);
+        firstNumber = [];
+        secondNumber = [];
+        activeOperator = undefined;
+        document.querySelector('#currentInput').textContent = "-";
+
     }
 }
 
