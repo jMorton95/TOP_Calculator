@@ -91,8 +91,10 @@ function enterInput(input){
 //Clears all inputs. Resetting the calculator.
 function clear(){
     document.querySelector('#currentInput').textContent = "-";
+    document.querySelector('#calculatedTotal').textContent = "-";
     firstNumber = [];
     secondNumber = [];
+    numbersToCalculate = [];
     activeOperator = undefined;
 }
 
@@ -150,6 +152,8 @@ function castOperator(one, two){
             return one/two;
         case '*': 
             return one*two;
+        case '^':
+            return one ** two;
 
     }
         
