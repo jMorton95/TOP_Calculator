@@ -27,35 +27,35 @@ function enterNumber(input){
         //If we already have a decimal point, do not allow additional decimals.
         if (input == '.' && currentNumber.includes('.') == true) return;
         
-
         currentNumber.push(input);
         document.querySelector('#currentInput').textContent = currentNumber.join("");
     }
 }
 
 //Check if the pressed Key is one we wish to add animation to. Then check if input is a number or operator and run the valid function.
-function keyDown(e, check){
-    check = activeKeys;
-    
-    if (activeKeys.includes(e.key)){
+function keyDown(e){
+    if (allActiveKeys.includes(e.key)){
         document.getElementById(e.key).classList.add('buttonClick');
-        //checkDecimal(e.key, allowedNumbers)
         enterNumber(e.key, allowedNumbers);
     }
 }
 
-//Create an Array of all Keys we wish to allow KeyDown Events to apply to.
-const activeKeys = 
+//VALIDATION:
+//Collection of all Keys we wish to allow KeyDown Events to apply to.
+const allActiveKeys = 
 ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '`', '+', '-', 'Enter', '*', '/', 'Backspace', 'Delete', '^', '.'];
 
-//Create an Array of specific numbers that we allow to be passed as input values.
+//Collections of specific values that we will check against in Functions.
 const allowedNumbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.'];
+const allowedOperators = ['+', '-', '/', '*', '^'];
+const allowedInputs = ['Enter', 'Backspace', 'Delete', '`'];
 
 
-
-//Used to store Number inputs from cumulative inputs.
-let currentNumber = [];
-
+//DATA STORAGE:
+//Used to store cumulative inputs from button press or keystrokes.
+let firstNumber = [];
+let secondNumber = [];
+let activeOperator;
 
 
 const inButtons = document.querySelectorAll('button');
