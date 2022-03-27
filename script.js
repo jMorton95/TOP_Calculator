@@ -7,6 +7,7 @@ function buttonHover(e){
 
 function buttonClick(e){
     this.classList.toggle('buttonClick');
+    enterNumber(e.target.id, allowedNumbers);
 }
 
 //Remove CSS class after an animation finishes playing.
@@ -14,6 +15,15 @@ function clickTimeout(e){
     if (e.propertyName !== 'transform') return; //If animation is playing, do nothing.
     this.classList.remove('buttonClick');
 }
+
+
+function enterNumber(input, allowedNumbers){
+    if (allowedNumbers.includes(input) == true){
+        currentNumber.push(input);
+        document.querySelector('#currentInput').textContent = currentNumber.join("");
+    }
+}
+
 
 function keyDown(e){
     //Create an Array of all Keys we wish to allow KeyDown Events to apply to.
@@ -23,11 +33,15 @@ function keyDown(e){
     //Check if the pressed Key is one we wish to add animation to.
     if (activeKeys.includes(e.key)){
         document.getElementById(e.key).classList.add('buttonClick');
-        document.querySelector('#currentInput').textContent = e.key;
-        
+        enterNumber(e.key, allowedNumbers);
     }
     
 }
+
+let currentNumber = [];
+const allowedNumbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+
 
 /*
 function enterNumber(keyArray){
