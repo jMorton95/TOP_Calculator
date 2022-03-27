@@ -10,13 +10,14 @@ function buttonClick(e){
     enterNumber(e.target.id, allowedNumbers);
 }
 
+
 //Remove CSS class after an animation finishes playing.
 function clickTimeout(e){
     if (e.propertyName !== 'transform') return; //If animation is playing, do nothing.
     this.classList.remove('buttonClick');
 }
 
-
+//Check if input is on the allowed list, if it is, record it and output it to HTML.
 function enterNumber(input, allowedNumbers){
     if (allowedNumbers.includes(input) == true){
         currentNumber.push(input);
@@ -24,29 +25,27 @@ function enterNumber(input, allowedNumbers){
     }
 }
 
-
-function keyDown(e){
-    //Create an Array of all Keys we wish to allow KeyDown Events to apply to.
-    const activeKeys = 
-    ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '`', '+', '-', 'Enter', '*', '/', 'Backspace', 'Delete', '^', '.'];
-
-    //Check if the pressed Key is one we wish to add animation to.
+//Check if the pressed Key is one we wish to add animation to. Then check if input is a number or operator and run the valid function.
+function keyDown(e, check){
+    check = activeKeys;
+    
     if (activeKeys.includes(e.key)){
         document.getElementById(e.key).classList.add('buttonClick');
         enterNumber(e.key, allowedNumbers);
     }
-    
 }
 
-let currentNumber = [];
+//Create an Array of all Keys we wish to allow KeyDown Events to apply to.
+const activeKeys = 
+['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '`', '+', '-', 'Enter', '*', '/', 'Backspace', 'Delete', '^', '.'];
+
+//Create an Array of specific numbers that we allow to be passed as input values.
 const allowedNumbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
+//Used to store Number inputs from cumulative inputs.
+let currentNumber = [];
 
 
-/*
-function enterNumber(keyArray){
-    keyArray
-}*/
 
 const inButtons = document.querySelectorAll('button');
 //Ensures Button Hightlighting works only when the mouse hovers over the target button.
