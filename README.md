@@ -10,7 +10,7 @@ The main objective of this small project is to create a WebPage with an easy to 
 
 It requires support for both Mouse and Keyboard inputs.
 
-Demo: https://klavelon.github.io/TOP_Calculator/
+Demo: https://jMorton95.github.io/TOP_Calculator/
 
 Creator Learning Notes:
 
